@@ -1,3 +1,5 @@
+name: Build Config
+
 on: 
   push:
     branches: 
@@ -5,5 +7,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  pre_job:
+    name: Skip checks
+    runs-on: ubuntu-latest
+    outputs:
+      paths_result: ${{ steps.skip_check.outputs.paths_result }}
+    steps:
+      - name: Check skip workflows
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5.3.0
+        with:
+          paths_filter: |
+            build:
+              paths:
+                build.yml
+                "config/**"
+
   build:
+    needs: pre_job
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).build.should_skip }}
