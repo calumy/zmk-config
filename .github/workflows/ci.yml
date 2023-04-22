@@ -21,9 +21,6 @@ jobs:
         with:
           paths_filter: |
             standard_checks:
-              paths_ignore:
-                - requirements/base.txt
-                - requirements/test.txt
               paths:
                 - "**/**"
 
