@@ -87,6 +87,14 @@ jobs:
     with:
       archive_name: ${{ needs.next_tag.outputs.NEXT_VERSION }}
 
+  draw:
+    name: Draw Keymaps
+    needs: [pre_job, next_tag]
+    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).generate_release.should_skip }}
+    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    with:
+      output_folder: "assets"
+
   cache-standard-checks:
     name: Cache standard checks dependencies
     needs: pre_job
