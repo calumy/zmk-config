@@ -44,4 +44,3 @@ repos:
       - id: prettier
         args: [--trailing-comma, all]
         exclude_types: [json]
-        exclude: assets/keymap.yaml

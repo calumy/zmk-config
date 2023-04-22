@@ -87,6 +87,74 @@ jobs:
     with:
       archive_name: ${{ needs.next_tag.outputs.NEXT_VERSION }}
 
+  draw:
+    name: Draw Keymaps
+    needs: [pre_job, next_tag]
+    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).generate_release.should_skip }}
+    permissions:
+      contents: write
+    uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
+    with:
+      output_folder: "assets"
+
+  generate_release:
+    name: Generate Release
+    needs: [pre_job, next_tag, build, draw]
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+
+      - name: Set up Python
+        id: setup_python
+        uses: actions/setup-python@v4.6.0
+        with:
+          python-version: "3.11"
+          check-latest: true
+
+      - name: Pip Cache
+        uses: actions/cache@v3
+        id: python_cache
+        with:
+          path: |
+            env
+            ~/.cache/pip
+          key: env-${{ steps.setup_python.outputs.python-version }}-v2-${{ hashFiles('requirements/release.txt') }}
+
+      - name: Install release dependencies
+        if: ${{ steps.python_cache.outputs.cache-hit != 'true' }}
+        run: |
+          python -m pip install virtualenv --disable-pip-version-check
+          python -m virtualenv env
+          env/bin/python -m pip install -r requirements/release.txt --disable-pip-version-check
+
+      - name: Set git credentials
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Bump Version
+        run: env/bin/python -m bumpver update
+
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.next_tag.outputs.NEXT_VERSION }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          files: |
+            lily58_left-nice_nano_v2-zmk.uf2
+            lily58_right-nice_nano_v2-zmk.uf2
+          fail_on_unmatched_files: true
+          generate_release_notes: true
+          tag_name: ${{ needs.next_tag.outputs.NEXT_VERSION }}
+
   cache-standard-checks:
     name: Cache standard checks dependencies
     needs: pre_job

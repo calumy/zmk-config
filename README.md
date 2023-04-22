@@ -4,7 +4,7 @@ This is a configuration for the Lily58 keyboard built with nice!nanos, using the
 
 ## Current Configuration
 
-![Keymap](assets/keymap.svg)
+![Keymap](assets/lily58.svg)
 
 ## Useful Links
 
