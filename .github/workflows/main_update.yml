@@ -26,12 +26,12 @@ jobs:
           paths_filter: |
             generate_release:
               paths:
-                build.yml
-                "config/**"
+                - build.yml
+                - "config/**"
             cache_standard_checks:
               paths:
-                requirements/lint.txt
-                .pre-commit-config.yaml
+                - requirements/lint.txt
+                - .pre-commit-config.yaml
 
   next_tag:
     name: Get Next Tag
