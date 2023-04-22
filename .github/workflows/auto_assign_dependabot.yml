@@ -6,6 +6,9 @@ on:
     types:
       - requested
 
+permissions:
+  pull-requests: write
+
 jobs:
   auto-assign:
     name: Dependabot - Auto assign
