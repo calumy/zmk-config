@@ -244,7 +244,7 @@ path {
 <rect rx="6.0" ry="6.0" x="788.0" y="499.0" width="52.0" height="52.0" class=""/>
 <text x="814.0" y="525.0" class="tap">[</text>
 <rect rx="6.0" ry="6.0" x="844.0" y="513.0" width="52.0" height="52.0" class=""/>
-<text x="870.0" y="539.0" class="tap">{</text>
+<text x="870.0" y="539.0" class="tap">]</text>
 <rect rx="6.0" ry="6.0" x="900.0" y="520.0" width="52.0" height="52.0" class=""/>
 <text x="926.0" y="546.0" class="tap">
 <tspan x="926.0" dy="-0.6em">PG</tspan><tspan x="926.0" dy="1.2em">DN</tspan></text>
