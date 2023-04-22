@@ -1,0 +1,33 @@
+{
+  "[json,jsonc]": {
+    "editor.formatOnSave": false
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "other": "on",
+      "strings": "on"
+    },
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80
+  },
+  "files.exclude": {
+    "**/.eslintcache": true,
+    "**/.pytest_cache": true,
+    "**/__pycache__": true,
+    "**/env": true,
+    "**/node_modules": true
+  },
+  "githubIssues.queries": [
+    {
+      "label": "Issues",
+      "query": "assignee:${user} state:open repo:${owner}/${repository} sort:created-desc"
+    }
+  ],
+  "json.format.enable": false,
+  "prettier.trailingComma": "all",
+  "workbench.startupEditor": "readme"
+}
