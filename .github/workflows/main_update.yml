@@ -24,7 +24,7 @@ jobs:
         uses: fkirc/skip-duplicate-actions@v5.3.0
         with:
           paths_filter: |
-            build:
+            generate_release:
               paths:
                 build.yml
                 "config/**"
@@ -32,9 +32,6 @@ jobs:
               paths:
                 requirements/lint.txt
                 .pre-commit-config.yaml
-            generate_release:
-              paths:
-                "**/**"
 
   next_tag:
     name: Get Next Tag
