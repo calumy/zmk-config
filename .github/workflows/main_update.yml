@@ -1,4 +1,4 @@
-name: Build Config
+name: Main Update
 
 on:
   push:
