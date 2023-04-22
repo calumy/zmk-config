@@ -129,6 +129,11 @@ jobs:
           python -m virtualenv env
           env/bin/python -m pip install -r requirements/release.txt --disable-pip-version-check
 
+      - name: Set git credentials
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Bump Version
         run: env/bin/python -m bumpver update
 
