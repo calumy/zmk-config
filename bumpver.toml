@@ -4,3 +4,4 @@ version_pattern = "vYY.0M.INC1"
 commit_message = "bump version {old_version} -> {new_version}"
 commit = true
 tag = true
+push = true
