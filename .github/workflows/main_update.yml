@@ -102,6 +102,9 @@ jobs:
     needs: [pre_job, next_tag, build, draw]
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.2
@@ -143,7 +146,6 @@ jobs:
           name: ${{ needs.next_tag.outputs.NEXT_VERSION }}
 
       - name: Create release
-        id: create-release
         uses: softprops/action-gh-release@v0.1.15
         with:
           files: |
