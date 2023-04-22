@@ -44,6 +44,7 @@ jobs:
 
   next_tag:
     name: Get Next Tag
+    needs: pre_job
     if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).generate_release.should_skip }}
     runs-on: ubuntu-latest
 
