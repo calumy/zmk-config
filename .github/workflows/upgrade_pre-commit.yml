@@ -1,0 +1,44 @@
+name: Pre-commit auto-update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 5 1 * *" # Update monthly on the first day of the month at 5:30am UTC
+
+jobs:
+  auto-update:
+    name: Auto update pre-commit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+
+      - name: Set up Python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.11"
+
+      - name: Set git credentials
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: List git credentials
+        run: |
+          git config --list
+
+      - name: Install pre-commit
+        run: pip install pre-commit
+
+      - name: Run pre-commit autoupdate
+        run: pre-commit autoupdate
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5.0.0
+        with:
+          branch: update/pre-commit/autoupdate
+          title: Auto-update pre-commit hooks
+          commit-message: Auto-update pre-commit hooks
+          body: Bump versions of pre-commit tools to latest version
+          labels: Pre-commit

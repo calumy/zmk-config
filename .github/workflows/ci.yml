@@ -1,10 +1,12 @@
-name: Build Config
+name: Continuous Integration
 
-on: 
-  push:
-    branches: 
-      - main
-  workflow_dispatch:
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   id-token: write
@@ -24,13 +26,12 @@ jobs:
         uses: fkirc/skip-duplicate-actions@v5.3.0
         with:
           paths_filter: |
-            build:
+            standard_checks:
               paths:
-                build.yml
-                "config/**"
+                - "**/**"
 
-  build:
-    name: Build Config
+  standard_checks:
+    name: Standard Checks
     needs: pre_job
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    if: needs.pre_job.outputs.should_skip != 'true' || !fromJSON(needs.pre_job.outputs.paths_result).build.should_skip
+    if: needs.pre_job.outputs.should_skip != 'true' || !fromJSON(needs.pre_job.outputs.paths_result).standard_checks.should_skip
+    uses: ./.github/workflows/ci_standard_checks.yml

@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "fabiospampinato.vscode-terminals",
+    "github.vscode-pull-request-github"
+  ],
+  "unwantedRecommendations": []
+}

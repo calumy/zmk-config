@@ -1,0 +1,87 @@
+name: Main Update
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  actions: read
+
+jobs:
+  pre_job:
+    name: Skip checks
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+      paths_result: ${{ steps.skip_check.outputs.paths_result }}
+    steps:
+      - name: Check skip workflows
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5.3.0
+        with:
+          paths_filter: |
+            build:
+              paths:
+                build.yml
+                "config/**"
+            cache_standard_checks:
+              paths:
+                requirements/lint.txt
+                .pre-commit-config.yaml
+
+  build:
+    name: Build Config
+    needs: pre_job
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    if: needs.pre_job.outputs.should_skip != 'true' || !fromJSON(needs.pre_job.outputs.paths_result).build.should_skip
+
+  cache-standard-checks:
+    name: Cache standard checks dependencies
+    needs: pre_job
+    if: needs.pre_job.outputs.should_skip != 'true' || !fromJSON(needs.pre_job.outputs.paths_result).cache_standard_checks.should_skip
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+
+      - name: Set up Python
+        id: setup_python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.11"
+          check-latest: true
+
+      - name: Pip Cache
+        uses: actions/cache@v3
+        id: python_cache
+        with:
+          path: |
+            env
+            ~/.cache/pip
+          key: env-${{ steps.setup_python.outputs.python-version }}-v2-${{ hashFiles('requirements/lint.txt') }}
+
+      - name: Cache Pre-commit
+        uses: actions/cache@v3
+        id: pre_commit_cache
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-v2-${{ hashFiles('.pre-commit-config.yaml') }}
+          restore-keys: |
+            pre-commit-v2-
+
+      - name: Install linting dependencies
+        if: ${{ steps.python_cache.outputs.cache-hit != 'true' }}
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install virtualenv
+          python -m virtualenv env
+          env/bin/python -m pip install -r requirements/lint.txt
+
+      - name: Install pre-commit hooks
+        if: ${{ steps.pre_commit_cache.outputs.cache-hit != 'true' }}
+        run: env/bin/python -m pre_commit install --install-hooks
