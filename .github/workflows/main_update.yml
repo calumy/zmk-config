@@ -37,12 +37,12 @@ jobs:
     name: Build Config
     needs: pre_job
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    if: !fromJSON(needs.pre_job.outputs.paths_result).build.should_skip
+    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).build.should_skip }}
 
   cache-standard-checks:
     name: Cache standard checks dependencies
     needs: pre_job
-    if: !fromJSON(needs.pre_job.outputs.paths_result).cache_standard_checks.should_skip
+    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).cache_standard_checks.should_skip }}
     runs-on: ubuntu-latest
 
     steps:
