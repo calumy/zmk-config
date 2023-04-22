@@ -137,6 +137,9 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
+      - name: Pull latest changes
+        run: git pull
+
       - name: Bump Version
         run: env/bin/python -m bumpver update
 
