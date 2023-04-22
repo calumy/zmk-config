@@ -91,6 +91,8 @@ jobs:
     name: Draw Keymaps
     needs: [pre_job, next_tag]
     if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).generate_release.should_skip }}
+    permissions:
+      contents: write
     uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     with:
       output_folder: "assets"
