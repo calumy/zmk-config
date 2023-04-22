@@ -18,7 +18,6 @@ jobs:
     name: Skip checks
     runs-on: ubuntu-latest
     outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
       paths_result: ${{ steps.skip_check.outputs.paths_result }}
     steps:
       - name: Check skip workflows
@@ -33,5 +32,5 @@ jobs:
   standard_checks:
     name: Standard Checks
     needs: pre_job
-    if: needs.pre_job.outputs.should_skip != 'true' || !fromJSON(needs.pre_job.outputs.paths_result).standard_checks.should_skip
+    if: !fromJSON(needs.pre_job.outputs.paths_result).standard_checks.should_skip
     uses: ./.github/workflows/ci_standard_checks.yml
