@@ -36,17 +36,14 @@ jobs:
               paths:
                 "**/**"
 
-  build:
-    name: Build Config
-    needs: pre_job
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
-    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).build.should_skip }}
-
   next_tag:
     name: Get Next Tag
     needs: pre_job
     if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).generate_release.should_skip }}
     runs-on: ubuntu-latest
+
+    outputs:
+      NEXT_VERSION: ${{ steps.get-next-version.outputs.CURRENT_VERSION }}
 
     steps:
       - name: Checkout
@@ -82,8 +79,16 @@ jobs:
         id: get-next-version
         run: env/bin/python -m bumpver show --env >> "$GITHUB_OUTPUT"
 
-      - name: Use BumpVer environment variables
-        run: echo "Current version is ${{ steps.get-next-version.outputs.CURRENT_VERSION }}"
+      - name: Print next version
+        run: echo "Next version is ${{ steps.get-next-version.outputs.CURRENT_VERSION }}"
+
+  build:
+    name: Build Config
+    needs: [pre_job, next_tag]
+    if: ${{ !fromJSON(needs.pre_job.outputs.paths_result).generate_release.should_skip }}
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      archive_name: ${{ needs.next_tag.outputs.NEXT_VERSION }}
 
   cache-standard-checks:
     name: Cache standard checks dependencies
