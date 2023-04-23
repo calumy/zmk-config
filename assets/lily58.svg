@@ -218,23 +218,11 @@ path {
 <text x="926.0" y="490.0" class="tap">
 <tspan x="926.0" dy="-0.6em">PG</tspan><tspan x="926.0" dy="1.2em">UP</tspan></text>
 <rect rx="6.0" ry="6.0" x="32.0" y="520.0" width="52.0" height="52.0" class=""/>
-<text x="58.0" y="546.0" class="tap">
-<tspan x="58.0" dy="-0.6em">BT</tspan><tspan x="58.0" dy="1.2em">CLR</tspan></text>
 <rect rx="6.0" ry="6.0" x="88.0" y="513.0" width="52.0" height="52.0" class=""/>
-<text x="114.0" y="539.0" class="tap">
-<tspan x="114.0" dy="-0.6em">BT</tspan><tspan x="114.0" dy="1.2em">0</tspan></text>
 <rect rx="6.0" ry="6.0" x="144.0" y="499.0" width="52.0" height="52.0" class=""/>
-<text x="170.0" y="525.0" class="tap">
-<tspan x="170.0" dy="-0.6em">BT</tspan><tspan x="170.0" dy="1.2em">1</tspan></text>
 <rect rx="6.0" ry="6.0" x="200.0" y="492.0" width="52.0" height="52.0" class=""/>
-<text x="226.0" y="518.0" class="tap">
-<tspan x="226.0" dy="-0.6em">BT</tspan><tspan x="226.0" dy="1.2em">2</tspan></text>
 <rect rx="6.0" ry="6.0" x="256.0" y="499.0" width="52.0" height="52.0" class=""/>
-<text x="282.0" y="525.0" class="tap">
-<tspan x="282.0" dy="-0.6em">BT</tspan><tspan x="282.0" dy="1.2em">3</tspan></text>
 <rect rx="6.0" ry="6.0" x="312.0" y="506.0" width="52.0" height="52.0" class=""/>
-<text x="338.0" y="532.0" class="tap">
-<tspan x="338.0" dy="-0.6em">BT</tspan><tspan x="338.0" dy="1.2em">4</tspan></text>
 <rect rx="6.0" ry="6.0" x="620.0" y="506.0" width="52.0" height="52.0" class=""/>
 <text x="646.0" y="532.0" class="tap">
 <tspan x="646.0" dy="-0.6em">VOLUME</tspan><tspan x="646.0" dy="1.2em">UP</tspan></text>
@@ -323,7 +311,11 @@ path {
 <text x="758.0" y="896.0" class="tap">UP</text>
 <rect rx="6.0" ry="6.0" x="788.0" y="877.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="844.0" y="891.0" width="52.0" height="52.0" class=""/>
+<text x="870.0" y="917.0" class="tap">
+<tspan x="870.0" dy="-0.6em">BT</tspan><tspan x="870.0" dy="1.2em">CLR</tspan></text>
 <rect rx="6.0" ry="6.0" x="900.0" y="898.0" width="52.0" height="52.0" class=""/>
+<text x="926.0" y="924.0" class="tap">
+<tspan x="926.0" dy="-0.6em">BT</tspan><tspan x="926.0" dy="1.2em">0</tspan></text>
 <rect rx="6.0" ry="6.0" x="32.0" y="954.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="88.0" y="947.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="144.0" y="933.0" width="52.0" height="52.0" class=""/>
@@ -340,7 +332,11 @@ path {
 <rect rx="6.0" ry="6.0" x="788.0" y="933.0" width="52.0" height="52.0" class=""/>
 <text x="814.0" y="959.0" class="tap">RIGHT</text>
 <rect rx="6.0" ry="6.0" x="844.0" y="947.0" width="52.0" height="52.0" class=""/>
+<text x="870.0" y="973.0" class="tap">
+<tspan x="870.0" dy="-0.6em">BT</tspan><tspan x="870.0" dy="1.2em">1</tspan></text>
 <rect rx="6.0" ry="6.0" x="900.0" y="954.0" width="52.0" height="52.0" class=""/>
+<text x="926.0" y="980.0" class="tap">
+<tspan x="926.0" dy="-0.6em">BT</tspan><tspan x="926.0" dy="1.2em">2</tspan></text>
 <rect rx="6.0" ry="6.0" x="32.0" y="1010.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="88.0" y="1003.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="144.0" y="989.0" width="52.0" height="52.0" class=""/>
@@ -354,7 +350,11 @@ path {
 <rect rx="6.0" ry="6.0" x="732.0" y="982.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="788.0" y="989.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="844.0" y="1003.0" width="52.0" height="52.0" class=""/>
+<text x="870.0" y="1029.0" class="tap">
+<tspan x="870.0" dy="-0.6em">BT</tspan><tspan x="870.0" dy="1.2em">3</tspan></text>
 <rect rx="6.0" ry="6.0" x="900.0" y="1010.0" width="52.0" height="52.0" class=""/>
+<text x="926.0" y="1036.0" class="tap">
+<tspan x="926.0" dy="-0.6em">BT</tspan><tspan x="926.0" dy="1.2em">4</tspan></text>
 <rect rx="6.0" ry="6.0" x="172.0" y="1045.0" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="228.0" y="1046.4" width="52.0" height="52.0" class=""/>
 <rect rx="6.0" ry="6.0" x="284.0" y="1052.0" width="52.0" height="52.0" class=""/>
