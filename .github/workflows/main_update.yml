@@ -96,6 +96,7 @@ jobs:
     uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     with:
       output_folder: "assets"
+      commit_message: "Update keymap images"
 
   generate_release:
     name: Generate Release
