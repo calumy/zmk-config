@@ -9,6 +9,9 @@ jobs:
   auto-update:
     name: Auto update pre-commit
     runs-on: ubuntu-latest
+    env:
+      app_id: ${{ secrets.APP_ID }}
+      app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
 
     steps:
       - name: Checkout
@@ -19,14 +22,12 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Set git credentials
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-
-      - name: List git credentials
-        run: |
-          git config --list
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1.8.0
+        with:
+          app_id: ${{ env.APP_ID }}
+          private_key: ${{ env.APP_PRIVATE_KEY }}
 
       - name: Install pre-commit
         run: pip install pre-commit
@@ -42,3 +43,4 @@ jobs:
           commit-message: Auto-update pre-commit hooks
           body: Bump versions of pre-commit tools to latest version
           labels: Pre-commit
+          token: ${{ steps.generate_token.outputs.token }}
