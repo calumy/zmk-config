@@ -44,3 +44,4 @@ jobs:
           body: Bump versions of pre-commit tools to latest version
           labels: Pre-commit
           token: ${{ steps.generate_token.outputs.token }}
+          assignees: ${{ secrets.DEFAULT_UPDATE_ASSIGNEE }}
