@@ -22,12 +22,12 @@ repos:
         args: [--autofix]
       - id: check-yaml
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.23.0
+    rev: 0.23.2
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
   - repo: https://github.com/crate-ci/typos
-    rev: v1.14.11
+    rev: typos-dict-v0.10.5
     hooks:
       - id: typos
   - repo: https://github.com/pappasam/toml-sort
