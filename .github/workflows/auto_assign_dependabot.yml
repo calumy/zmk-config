@@ -19,6 +19,6 @@ jobs:
         env:
           assignee: ${{ secrets.DEFAULT_UPDATE_ASSIGNEE }}
         if: "${{ env.assignee != '' }}"
-        uses: pozil/auto-assign-issue@v1.12.0
+        uses: pozil/auto-assign-issue@v1.13.0
         with:
           assignees: ${{ env.assignee }}
